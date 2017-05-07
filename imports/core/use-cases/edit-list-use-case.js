@@ -15,4 +15,9 @@ export class EditListUseCase {
         await articleRepository.insertArticle(article);
     }
 
+    async listAllArticles() {
+        const articleRepository = this.factory.getArticleRepository();
+        return articleRepository.fetchAllArticles();
+    }
+
 }
