@@ -2,13 +2,21 @@
   "name": "htw-clean-meteor",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "test:unit": "node ./node_modules/mocha/bin/mocha './tests/unit/**/*.test.js' --compilers js:babel-register --require ./tests/unit/babel"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "meteor-node-stubs": "~0.2.4"
   },
   "devDependencies": {
-    "eslint": "^3.19.0"
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0",
+    "sinon": "^2.2.0"
   }
 }
