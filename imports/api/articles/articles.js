@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import {ArticleRepository} from '../../core/repositories/article-repository';
+import {ArticleState} from '../../core/entities/article-state';
 
 const ArticleCollection = new Mongo.Collection('articles');
 
@@ -13,10 +14,15 @@ export class Articles extends ArticleRepository {
     }
 
     async fetchAllArticles() {
-        return new Promise(resolve => {
-            let result = ArticleCollection.find();
-            resolve(result);
-        });
+        return ArticleCollection.find();
+    }
+
+    async fetchRequiredArticles() {
+        return ArticleCollection.find({ state: ArticleState.REQUIRED });
+    }
+
+    async fetchAvailableArticles() {
+        return ArticleCollection.find({ state: ArticleState.AVAILABLE });
     }
 
 }

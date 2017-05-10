@@ -4,13 +4,33 @@
 
     <div class="row">
         <div class="col-md-4">
-            {{> requiredArticles}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Required Articles</h3>
+                </div>
+                <div class="panel-body">
+                    {{> articleList getRequiredArticles}}
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            {{> potentiallyRequiredArticles}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Potentially Required Articles</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            {{> availableArticles}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Available Articles</h3>
+                </div>
+                <div class="panel-body">
+                    {{> articleList getAvailableArticles}}
+                </div>
+            </div>
         </div>
     </div>
 

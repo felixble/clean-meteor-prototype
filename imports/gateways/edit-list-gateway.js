@@ -22,6 +22,16 @@ export class EditListGateway {
         return resolver.resolve(_.bind(this.editListUseCase.listAllArticles, this.editListUseCase));
     }
 
+    listRequiredArticles() {
+        const resolver = this._getResolverByName('listRequiredArticles');
+        return resolver.resolve(_.bind(this.editListUseCase.listRequiredArticles, this.editListUseCase));
+    }
+
+    listAvailableArticles() {
+        const resolver = this._getResolverByName('listAvailableArticles');
+        return resolver.resolve(_.bind(this.editListUseCase.listAvailableArticles, this.editListUseCase));
+    }
+
     /**
      * @return {ReactiveDataSourceResolver}
      * @private

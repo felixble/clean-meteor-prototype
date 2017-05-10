@@ -20,4 +20,14 @@ export class EditListUseCase {
         return await articleRepository.fetchAllArticles();
     }
 
+    async listRequiredArticles() {
+        const articleRepository = this.factory.getArticleRepository();
+        return await articleRepository.fetchRequiredArticles();
+    }
+
+    async listAvailableArticles() {
+        const articleRepository = this.factory.getArticleRepository();
+        return await articleRepository.fetchAvailableArticles();
+    }
+
 }

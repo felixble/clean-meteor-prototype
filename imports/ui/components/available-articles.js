@@ -1,1 +1,0 @@
-import './available-articles.html';

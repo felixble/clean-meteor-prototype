@@ -1,10 +1,5 @@
 <template name="allArticles">
 
     <h1>All Articles</h1>
-
-    <ul>
-        {{#each getArticles}}
-            <li>{{name}} ({{state}})</li>
-        {{/each}}
-    </ul>
+    {{> articleList getArticles}}
 </template>

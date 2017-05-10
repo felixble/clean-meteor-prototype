@@ -13,4 +13,12 @@ export class ArticleRepository {
         throw new Error('interface-stub');
     }
 
+    async fetchRequiredArticles() {
+        throw new Error('interface-stub');
+    }
+
+    async fetchAvailableArticles() {
+        throw new Error('interface-stub');
+    }
+
 }
