@@ -7,7 +7,8 @@ export class EditListGateway {
 
     constructor() {
         this.editListUseCase = new EditListUseCase(meteorBaseFactory);
-        this.allArticlesReactive = new ReactiveVar([]);
+        this.allArticlesInit = false;
+        this.allArticlesReactive = new ReactiveVar();
     }
 
     async addArticle(name) {
@@ -22,13 +23,15 @@ export class EditListGateway {
         });
     }
 
-    async listAllArticles() {
-        return await this.editListUseCase.listAllArticles();
-        /*    .then(articles => {
-                console.log('promise resolved');
-                this.allArticlesReactive.set(articles);
-            });
-        return this.allArticlesReactive.get();*/
+    listAllArticles() {
+        if (!this.allArticlesInit) {
+            this.editListUseCase.listAllArticles()
+                .then((articles) => {
+                    this.allArticlesInit = true;
+                    this.allArticlesReactive.set(articles);
+                });
+        }
+        return this.allArticlesReactive.get();
     }
 
 }

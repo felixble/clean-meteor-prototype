@@ -4,7 +4,7 @@
 
     <ul>
         {{#each getArticles}}
-            <li><input type="checkbox"> {{name}}</li>
+            <li><input title="Toggle article as required/available" type="checkbox" {{checkRequiredArticles this}}> {{name}}</li>
         {{/each}}
     </ul>
 </template>
