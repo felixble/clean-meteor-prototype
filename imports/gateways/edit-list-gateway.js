@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { ReactiveVar } from 'meteor/reactive-var';
 import {EditListUseCase} from '../core/use-cases/edit-list-use-case';
 import {meteorBaseFactory} from '../infrastructure/meteor-base-factory';
 
@@ -6,6 +7,7 @@ export class EditListGateway {
 
     constructor() {
         this.editListUseCase = new EditListUseCase(meteorBaseFactory);
+        this.allArticlesReactive = new ReactiveVar([]);
     }
 
     async addArticle(name) {
@@ -20,8 +22,13 @@ export class EditListGateway {
         });
     }
 
-    listAllArticles() {
-        return this.editListUseCase.listAllArticles();
+    async listAllArticles() {
+        return await this.editListUseCase.listAllArticles();
+        /*    .then(articles => {
+                console.log('promise resolved');
+                this.allArticlesReactive.set(articles);
+            });
+        return this.allArticlesReactive.get();*/
     }
 
 }

@@ -12,4 +12,11 @@ export class Articles extends ArticleRepository {
         return ArticleCollection.insert(article);
     }
 
+    async fetchAllArticles() {
+        return new Promise(resolve => {
+            let result = ArticleCollection.find();
+            resolve(result);
+        });
+    }
+
 }

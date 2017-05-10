@@ -1,0 +1,10 @@
+<template name="allArticles">
+
+    <h1>All Articles</h1>
+
+    <ul>
+        {{#each getArticles}}
+            <li><input type="checkbox"> {{name}}</li>
+        {{/each}}
+    </ul>
+</template>

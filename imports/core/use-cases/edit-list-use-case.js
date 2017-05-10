@@ -17,7 +17,7 @@ export class EditListUseCase {
 
     async listAllArticles() {
         const articleRepository = this.factory.getArticleRepository();
-        return articleRepository.fetchAllArticles();
+        return await articleRepository.fetchAllArticles();
     }
 
 }
