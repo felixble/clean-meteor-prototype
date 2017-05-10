@@ -1,37 +1,36 @@
 import { Meteor } from 'meteor/meteor';
-import { ReactiveVar } from 'meteor/reactive-var';
+import './helpers/promisedMethods';
 import {EditListUseCase} from '../core/use-cases/edit-list-use-case';
 import {meteorBaseFactory} from '../infrastructure/meteor-base-factory';
+import _ from 'underscore';
+import {ReactiveDataSourceResolver} from './helpers/reactive-datasource-resolver';
+
 
 export class EditListGateway {
 
     constructor() {
         this.editListUseCase = new EditListUseCase(meteorBaseFactory);
-        this.allArticlesInit = false;
-        this.allArticlesReactive = new ReactiveVar();
+        this.resolverMap = {};
     }
 
-    async addArticle(name) {
-        return new Promise((resolve, reject) => {
-            Meteor.call('articles.insert', { name: name }, (err, result) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(result);
-                }
-            });
-        });
+    static async addArticle(name) {
+        return Meteor.callPromise('articles.insert', { name: name });
     }
 
     listAllArticles() {
-        if (!this.allArticlesInit) {
-            this.editListUseCase.listAllArticles()
-                .then((articles) => {
-                    this.allArticlesInit = true;
-                    this.allArticlesReactive.set(articles);
-                });
+        const resolver = this._getResolverByName('listAllArticles');
+        return resolver.resolve(_.bind(this.editListUseCase.listAllArticles, this.editListUseCase));
+    }
+
+    /**
+     * @return {ReactiveDataSourceResolver}
+     * @private
+     */
+    _getResolverByName(name) {
+        if (!this.resolverMap[name]) {
+            this.resolverMap[name] = new ReactiveDataSourceResolver();
         }
-        return this.allArticlesReactive.get();
+        return this.resolverMap[name];
     }
 
 }

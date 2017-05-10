@@ -3,14 +3,14 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 // Import to load these templates
 import '../../ui/layouts/app-layout.js';
-import '../../ui/pages/home.js';
+import '../../ui/pages/dashboard.js';
 import '../../ui/pages/create-article.js';
 import '../../ui/pages/all-articles.js';
 
 FlowRouter.route('/', {
-    name: 'home',
+    name: 'dashboard',
     action() {
-        BlazeLayout.render('appLayout', { main: 'home' });
+        BlazeLayout.render('appLayout', { main: 'dashboard' });
     }
 });
 
