@@ -7,7 +7,7 @@ const editListUseCase = new EditListUseCase(meteorBaseFactory);
 const shoppingUseCase = new ShoppingUseCase(meteorBaseFactory);
 
 Meteor.methods({
-    'articles.insert': async ({ name }) => {
+    'articles.insert': async (name) => {
         await editListUseCase.addArticle(name);
     },
     'articles.toggleRequired': async (articleId) => {
