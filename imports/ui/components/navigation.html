@@ -12,14 +12,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Dashboard</a></li>
-                    <li><a href="/createArticle">Create Article</a></li>
-                    <li><a href="/allArticles">All Articles</a></li>
+                    <li class="{{isRouteActive 'dashboard'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/">Dashboard</a></li>
+                    <li class="{{isRouteActive 'createArticle'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/createArticle">Create Article</a></li>
+                    <li class="{{isRouteActive 'allArticles'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/allArticles">All Articles</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Settings</a></li>
+                    <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Profile</a></li>
+                    <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Help</a></li>
                 </ul>
             </div>
         </div>
