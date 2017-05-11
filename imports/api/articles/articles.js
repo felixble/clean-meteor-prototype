@@ -24,19 +24,19 @@ export class Articles {
         return this.collection.insert(article);
     }
 
-    async fetchAllArticles() {
+    fetchAllArticles() {
         return this.collection.find();
     }
 
-    async fetchRequiredArticles() {
+    fetchRequiredArticles() {
         return this.collection.find({ state: ArticleState.REQUIRED });
     }
 
-    async fetchAvailableArticles() {
+    fetchAvailableArticles() {
         return this.collection.find({ state: ArticleState.AVAILABLE });
     }
 
-    async updateArticle(article) {
+    updateArticle(article) {
         const id = article._id;
         delete article._id;
         return this.collection.update(
@@ -45,7 +45,7 @@ export class Articles {
         );
     }
 
-    async fetchArticleById(id) {
+    fetchArticleById(id) {
         return this.collection.findOne({_id: id});
     }
 
