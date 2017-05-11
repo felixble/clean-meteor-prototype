@@ -7,27 +7,25 @@ export class EditListUseCase {
      */
     constructor(factory) {
         this.factory = factory;
+        this.articleRepository = this.factory.getArticleRepository();
     }
 
     async addArticle(name) {
-        const articleRepository = this.factory.getArticleRepository();
+        // check name ! (assert)
         const article = new Article(name);
-        await articleRepository.insertArticle(article);
+        await this.articleRepository.insertArticle(article);
     }
 
     async listAllArticles() {
-        const articleRepository = this.factory.getArticleRepository();
-        return await articleRepository.fetchAllArticles();
+        return await this.articleRepository.fetchAllArticles();
     }
 
     async listRequiredArticles() {
-        const articleRepository = this.factory.getArticleRepository();
-        return await articleRepository.fetchRequiredArticles();
+        return await this.articleRepository.fetchRequiredArticles();
     }
 
     async listAvailableArticles() {
-        const articleRepository = this.factory.getArticleRepository();
-        return await articleRepository.fetchAvailableArticles();
+        return await this.articleRepository.fetchAvailableArticles();
     }
 
 }

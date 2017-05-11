@@ -7,6 +7,10 @@ export class Article {
         this.state = ArticleState.REQUIRED;
     }
 
+    toggleState() {
+        this.state = ArticleState.toggle(this.state);
+    }
+
     isAvailable() {
         return this.state === ArticleState.AVAILABLE;
     }

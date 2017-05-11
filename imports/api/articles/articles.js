@@ -33,4 +33,17 @@ export class Articles extends ArticleRepository {
         return ArticleCollection.find({ state: ArticleState.AVAILABLE });
     }
 
+    async updateArticle(article) {
+        const id = article._id;
+        delete article._id;
+        return ArticleCollection.update(
+            {_id: id},
+            {$set: article}
+        );
+    }
+
+    async fetchArticleById(id) {
+        return ArticleCollection.findOne({_id: id});
+    }
+
 }

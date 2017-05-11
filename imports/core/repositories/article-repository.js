@@ -21,4 +21,12 @@ export class ArticleRepository {
         throw new Error('interface-stub');
     }
 
+    async updateArticle(article) {
+        throw new Error('interface-stub', article);
+    }
+
+    async fetchArticleById(id) {
+        throw new Error('interface-stub', id);
+    }
+
 }
