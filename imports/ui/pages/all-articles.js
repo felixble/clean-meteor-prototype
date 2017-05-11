@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating';
 import './all-articles.html';
 import '../components/article-list';
-import {EditListGateway} from '../../gateways/edit-list-gateway';
+import {editListGateway} from '../../infrastructure/use-case-gateways';
 
-const editListGateway = new EditListGateway();
 
 Template.allArticles.onRendered(function () {
 });

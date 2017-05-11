@@ -1,11 +1,14 @@
 import { Meteor } from 'meteor/meteor';
+import _ from 'underscore';
 import './helpers/promisedMethods';
+import {ReactiveDataSourceResolver} from './helpers/reactive-datasource-resolver';
 
 export class MeteorGateway {
 
     constructor(useCase, optionsObject) {
         this.useCase = useCase;
         this.optionsObject = optionsObject;
+        this.resolverMap = {};
         this.init();
     }
 
@@ -32,6 +35,20 @@ export class MeteorGateway {
     }
 
     _buildReadableMethod(name) {
-        throw new Error('not-implemented', name);
+        return () => {
+            const resolver = this._getResolverByName(name);
+            return resolver.resolve(_.bind(this.useCase[name], this.useCase));
+        };
+    }
+
+    /**
+     * @return {ReactiveDataSourceResolver}
+     * @private
+     */
+    _getResolverByName(name) {
+        if (!this.resolverMap[name]) {
+            this.resolverMap[name] = new ReactiveDataSourceResolver();
+        }
+        return this.resolverMap[name];
     }
 }
