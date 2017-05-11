@@ -7,4 +7,8 @@ export class Article {
         this.state = ArticleState.REQUIRED;
     }
 
+    isAvailable() {
+        return this.state === ArticleState.AVAILABLE;
+    }
+
 }

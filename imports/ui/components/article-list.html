@@ -1,7 +1,7 @@
 <template name="articleList">
     <ul>
         {{#each getArticles}}
-            <li>{{name}} ({{state}})</li>
+            <li><input type="checkbox" class="toggleArticle" title="Toggle item required/available" {{checkArticle this}}/> {{name}} ({{state}})</li>
         {{/each}}
     </ul>
 </template>

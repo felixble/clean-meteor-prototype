@@ -1,8 +1,16 @@
 import { Mongo } from 'meteor/mongo';
 import {ArticleRepository} from '../../core/repositories/article-repository';
 import {ArticleState} from '../../core/entities/article-state';
+import {Article} from '../../core/entities/article';
 
-const ArticleCollection = new Mongo.Collection('articles');
+const ArticleCollection = new Mongo.Collection('articles', {
+    transform: (doc) => {
+        const article = new Article();
+        article.name = doc.name;
+        article.state = doc.state;
+        return article;
+    }
+});
 
 export class Articles extends ArticleRepository {
 
