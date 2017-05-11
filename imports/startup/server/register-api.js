@@ -1,1 +1,0 @@
-import '../../api/articles/methods';

@@ -16,7 +16,8 @@
  *
  * @function
  * @name ArticleRepository#updateArticle
- * @return {Promise.<Article>}
+ * @param article {Article}
+ * @return {Promise.<>}
  */
 
 /**
@@ -24,6 +25,7 @@
  *
  * @function
  * @name ArticleRepository#fetchArticleById
+ * @param articleId {string}
  * @return {Promise.<Article>}
  */
 
