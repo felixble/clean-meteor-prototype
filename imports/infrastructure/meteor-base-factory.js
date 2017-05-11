@@ -5,9 +5,13 @@ class MeteorBaseFactory extends BaseFactory {
 
     constructor() {
         super();
+        /** @type {ArticleRepository} */
         this.articleRepository = new Articles();
     }
 
+    /**
+     * @return {ArticleRepository}
+     */
     getArticleRepository() {
         return this.articleRepository;
     }

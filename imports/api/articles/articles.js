@@ -1,5 +1,4 @@
 import { Mongo } from 'meteor/mongo';
-import {ArticleRepository} from '../../core/repositories/article-repository';
 import {ArticleState} from '../../core/entities/article-state';
 import {Article} from '../../core/entities/article';
 
@@ -12,38 +11,42 @@ const ArticleCollection = new Mongo.Collection('articles', {
     }
 });
 
-export class Articles extends ArticleRepository {
+/**
+ * @implements {ArticleRepository}
+ */
+export class Articles {
 
-    /**
-     * @param article {Article}
-     */
-    async insertArticle(article) {
-        return ArticleCollection.insert(article);
+    constructor() {
+        this.collection = ArticleCollection;
+    }
+
+    insertArticle(article) {
+        return this.collection.insert(article);
     }
 
     async fetchAllArticles() {
-        return ArticleCollection.find();
+        return this.collection.find();
     }
 
     async fetchRequiredArticles() {
-        return ArticleCollection.find({ state: ArticleState.REQUIRED });
+        return this.collection.find({ state: ArticleState.REQUIRED });
     }
 
     async fetchAvailableArticles() {
-        return ArticleCollection.find({ state: ArticleState.AVAILABLE });
+        return this.collection.find({ state: ArticleState.AVAILABLE });
     }
 
     async updateArticle(article) {
         const id = article._id;
         delete article._id;
-        return ArticleCollection.update(
+        return this.collection.update(
             {_id: id},
             {$set: article}
         );
     }
 
     async fetchArticleById(id) {
-        return ArticleCollection.findOne({_id: id});
+        return this.collection.findOne({_id: id});
     }
 
 }
