@@ -3,7 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 export class ReactiveDataSourceResolver {
 
     constructor() {
-        this.initiated = false;
+        this.requestScheduled = false;
         this.reactiveResult = null;
     }
 
@@ -11,11 +11,15 @@ export class ReactiveDataSourceResolver {
         if (!this.reactiveResult) {
             this.reactiveResult = new ReactiveVar(initialValue);
         }
-        if (!this.initiated) {
+        if (!this.requestScheduled) {
+            this.requestScheduled = true;
             asyncQuery()
                 .then(result => {
                     this.reactiveResult.set(result);
-                    this.initiated = true;
+                })
+                .catch((error) => {
+                    this.requestScheduled = false;
+                    console.error(error);
                 });
         }
         return this.reactiveResult.get();
