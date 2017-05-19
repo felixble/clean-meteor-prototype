@@ -59,7 +59,7 @@ loggedIn.route('/createArticle', {
     }
 });
 
-exposed.route('/allArticles', {
+loggedIn.route('/allArticles', {
     name: 'allArticles',
     action() {
         BlazeLayout.render('appLayout', { main: 'allArticles' });
