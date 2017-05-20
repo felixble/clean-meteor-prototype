@@ -10,6 +10,6 @@ Template.navigation.helpers({
         return (route === currentRoute) ? 'active' : '';
     },
     getUsername() {
-        return Meteor.user().emails[0].address;
+        return Meteor.user().username;
     }
 });

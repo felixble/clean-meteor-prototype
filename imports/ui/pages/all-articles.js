@@ -1,14 +1,16 @@
 import { Template } from 'meteor/templating';
 import './all-articles.html';
 import '../components/article-list';
-import {editListGateway} from '../../infrastructure/use-case-gateways';
+import {GatewayFactory} from '../../infrastructure/use-case-gateways';
 
 
-Template.allArticles.onRendered(function () {
+Template.allArticles.onCreated(function () {
+    this.editListGateway = GatewayFactory.createEditListGateway();
 });
 
 Template.allArticles.helpers({
     getArticles: () => {
-        return editListGateway.listAllArticles();
+        const tmpl = Template.instance();
+        return tmpl.editListGateway.listAllArticles();
     }
 });

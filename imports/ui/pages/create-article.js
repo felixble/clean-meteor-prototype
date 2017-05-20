@@ -1,11 +1,15 @@
 import { Template } from 'meteor/templating';
 import './create-article.html';
-import {editListGateway} from '../../infrastructure/use-case-gateways';
+import {GatewayFactory} from '../../infrastructure/use-case-gateways';
+
+Template.createArticle.onCreated(function () {
+    this.editListGateway = GatewayFactory.createEditListGateway();
+});
 
 Template.createArticle.events({
     'submit #createArticleForm': (evt, tmpl) => {
         evt.preventDefault();
         const name = tmpl.find('#name').value;
-        editListGateway.addArticle(name);
+        tmpl.editListGateway.addArticle(name);
     }
 });
