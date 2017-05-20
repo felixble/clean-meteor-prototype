@@ -2,8 +2,9 @@ import {ArticleState} from './article-state';
 
 export class Article {
 
-    constructor(name) {
+    constructor(name, listId) {
         this.name = name;
+        this.listId = listId;
         this.state = ArticleState.REQUIRED;
     }
 

@@ -1,16 +1,14 @@
-import { Meteor } from 'meteor/meteor';
 import {BaseFactory} from '../core/base-factory';
 import {Articles} from '../api/articles/articles';
 import {MeteorAuthService} from './meteor-auth-service';
 
 class MeteorBaseFactory extends BaseFactory {
 
-    constructor(context = null) {
+    constructor() {
         super();
-        this.context = (context) ? context : Meteor;
         /** @type {ArticleRepository} */
         this.articleRepository = new Articles();
-        this.authService = new MeteorAuthService(this.context);
+        this.authService = new MeteorAuthService();
     }
 
     /**
@@ -22,10 +20,6 @@ class MeteorBaseFactory extends BaseFactory {
 
     getAuthService() {
         return this.authService;
-    }
-
-    getInstanceWithContext(context) {
-        return new MeteorBaseFactory(context);
     }
 
 }

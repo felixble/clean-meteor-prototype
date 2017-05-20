@@ -14,23 +14,28 @@ export class EditListUseCase extends UseCase {
     async addArticle(name) {
         this._checkUserIsAuthenticated();
         // check name ! (assert)
-        const article = new Article(name);
+        const article = new Article(name, this._getAssociatedListId());
         await this.articleRepository.insertArticle(article);
     }
 
     async listAllArticles() {
         this._checkUserIsAuthenticated();
-        return await this.articleRepository.fetchAllArticles();
+        return await this.articleRepository.fetchAllArticles(this._getAssociatedListId());
     }
 
     async listRequiredArticles() {
         this._checkUserIsAuthenticated();
-        return await this.articleRepository.fetchRequiredArticles();
+        return await this.articleRepository.fetchRequiredArticles(this._getAssociatedListId());
     }
 
     async listAvailableArticles() {
         this._checkUserIsAuthenticated();
-        return await this.articleRepository.fetchAvailableArticles();
+        return await this.articleRepository.fetchAvailableArticles(this._getAssociatedListId());
     }
 
+    _getAssociatedListId() {
+        const authService = this.factory.getAuthService();
+        return authService.getAssociatedListId();
+    }
 }
+

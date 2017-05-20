@@ -3,5 +3,5 @@ import {meteorBaseFactory} from '../../../infrastructure/meteor-base-factory';
 
 
 Meteor.publish('articles', function() {
-    return meteorBaseFactory.getArticleRepository().fetchAllArticles();
+    return meteorBaseFactory.getArticleRepository().fetchAllArticles(this.userId);
 });

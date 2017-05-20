@@ -7,6 +7,7 @@ const ArticleCollection = new Mongo.Collection('articles', {
         const article = new Article();
         article.name = doc.name;
         article.state = doc.state;
+        article.listId = doc.listId;
         return article;
     }
 });
@@ -24,16 +25,16 @@ export class Articles {
         return this.collection.insert(article);
     }
 
-    fetchAllArticles() {
-        return this.collection.find();
+    fetchAllArticles(listId) {
+        return this.collection.find({ listId: listId });
     }
 
-    fetchRequiredArticles() {
-        return this.collection.find({ state: ArticleState.REQUIRED });
+    fetchRequiredArticles(listId) {
+        return this.collection.find({ state: ArticleState.REQUIRED, listId: listId });
     }
 
-    fetchAvailableArticles() {
-        return this.collection.find({ state: ArticleState.AVAILABLE });
+    fetchAvailableArticles(listId) {
+        return this.collection.find({ state: ArticleState.AVAILABLE, listId: listId });
     }
 
     updateArticle(article) {

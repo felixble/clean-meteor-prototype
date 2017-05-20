@@ -5,16 +5,16 @@ import { Meteor } from 'meteor/meteor';
  */
 export class MeteorAuthService {
 
-    constructor(context = null) {
+    constructor() {
         this.meteor = Meteor;
-        this.context = context;
     }
 
     isAuthenticated() {
-        if (this.context) {
-            return !!this.context.userId;
-        }
         return (this.meteor.userId());
+    }
+
+    getAssociatedListId() {
+        return this.meteor.userId();
     }
 
 }
