@@ -6,11 +6,15 @@ import {ShoppingUseCase} from '../core/use-cases/shopping-use-case';
 const editListUseCase = new EditListUseCase(meteorBaseFactory);
 const shoppingUseCase = new ShoppingUseCase(meteorBaseFactory);
 
-export const editListGateway = new MeteorGateway(
-    editListUseCase, {
-        addArticle: 'articles.insert'
-    });
-
-
-export const shoppingGateway = new MeteorGateway(
-    shoppingUseCase, {toggleArticleRequired: 'articles.toggleRequired'});
+export const GatewayFactory = {
+    createEditListGateway() {
+        return new MeteorGateway(
+            editListUseCase, {
+                addArticle: 'articles.insert'
+            });
+    },
+    createShoppingGateway() {
+        return new MeteorGateway(
+            shoppingUseCase, {toggleArticleRequired: 'articles.toggleRequired'});
+    }
+};

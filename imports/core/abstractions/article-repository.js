@@ -30,25 +30,34 @@
  */
 
 /**
- * Fetches all articles from the repository.
+ * Fetches all articles from the repository
+ * associated with the list identified by the
+ * given listId
  *
  * @function
  * @name ArticleRepository#fetchAllArticles
+ * @param listId {string}
  * @return {Promise.<Article[]>}
  */
 
 /**
- * Fetches all required articles from the repository.
+ * Fetches all required articles from the repository
+ * associated with the list identified by the
+ * given listId
  *
  * @function
  * @name ArticleRepository#fetchRequiredArticles
+ * @param listId {string}
  * @return {Promise.<Article[]>}
  */
 
 /**
- * Fetches all available articles from the repository.
+ * Fetches all available articles from the repository
+ * associated with the list identified by the
+ * given listId
  *
  * @function
  * @name ArticleRepository#fetchAvailableArticles
+ * @param listId {string}
  * @return {Promise.<Article[]>}
  */

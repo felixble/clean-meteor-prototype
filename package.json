@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test:unit": "node ./node_modules/mocha/bin/mocha './tests/unit/**/*.test.js' --compilers js:babel-register --require ./tests/unit/babel"
+    "test:unit": "node ./node_modules/mocha/bin/mocha './tests/unit/**/*.test.js' --compilers js:babel-register --require ./tests/unit/babel",
+    "postinstall": "node programs/postInstall.js"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
@@ -19,6 +20,7 @@
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
+    "fs-extra": "^3.0.1",
     "mocha": "^3.3.0",
     "sinon": "^2.2.0"
   }

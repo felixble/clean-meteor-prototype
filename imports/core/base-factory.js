@@ -6,4 +6,9 @@ export class BaseFactory {
      */
     getArticleRepository() {}
 
+    /**
+     * @return {AuthService}
+     */
+    getAuthService() {}
+
 }

@@ -1,5 +1,6 @@
 import {BaseFactory} from '../core/base-factory';
 import {Articles} from '../api/articles/articles';
+import {MeteorAuthService} from './meteor-auth-service';
 
 class MeteorBaseFactory extends BaseFactory {
 
@@ -7,6 +8,7 @@ class MeteorBaseFactory extends BaseFactory {
         super();
         /** @type {ArticleRepository} */
         this.articleRepository = new Articles();
+        this.authService = new MeteorAuthService();
     }
 
     /**
@@ -14,6 +16,10 @@ class MeteorBaseFactory extends BaseFactory {
      */
     getArticleRepository() {
         return this.articleRepository;
+    }
+
+    getAuthService() {
+        return this.authService;
     }
 
 }

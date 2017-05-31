@@ -11,14 +11,34 @@
                 <a class="navbar-brand" href="/">Project name</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="{{isRouteActive 'dashboard'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/">Dashboard</a></li>
-                    <li class="{{isRouteActive 'createArticle'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/createArticle">Create Article</a></li>
-                    <li class="{{isRouteActive 'allArticles'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/allArticles">All Articles</a></li>
-                </ul>
+                {{#if currentUser}}
+                    <ul class="nav navbar-nav">
+                        <li class="{{isRouteActive 'dashboard'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/">Dashboard</a></li>
+                        <li class="{{isRouteActive 'createArticle'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/createArticle">Create Article</a></li>
+                        <li class="{{isRouteActive 'allArticles'}}" data-toggle="collapse" data-target=".navbar-collapse.in"><a href="/allArticles">All Articles</a></li>
+                    </ul>
+                {{/if}}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Settings</a></li>
-                    <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Profile</a></li>
+                    <!--User DropDown Menu-->
+                    {{#if currentUser}}
+                        <li class="dropdown">
+                            <a href="#" id="navbar-usermenu" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                {{getUsername}}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Profile</a></li>
+                                <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout">
+                                    Sign Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {{/if}}  <!--currentUser?-->
+
+
                     <li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in">Help</a></li>
                 </ul>
             </div>

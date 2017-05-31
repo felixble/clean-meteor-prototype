@@ -1,16 +1,23 @@
 import { Template } from 'meteor/templating';
 import './dashboard.html';
 import '../components/article-list';
-import {editListGateway} from '../../infrastructure/use-case-gateways';
+import { GatewayFactory } from '../../infrastructure/use-case-gateways';
+
+
+Template.dashboard.onCreated(function() {
+    this.editListGateway = GatewayFactory.createEditListGateway();
+});
 
 Template.dashboard.helpers({
 
     getRequiredArticles() {
-        return editListGateway.listRequiredArticles();
+        const tmpl = Template.instance();
+        return tmpl.editListGateway.listRequiredArticles();
     },
 
     getAvailableArticles() {
-        return editListGateway.listAvailableArticles();
+        const tmpl = Template.instance();
+        return tmpl.editListGateway.listAvailableArticles();
     }
 
 });

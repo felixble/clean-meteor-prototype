@@ -1,9 +1,14 @@
-import {mockArticleRepository} from './repositories/mock-article-repository';
+import {mockArticleRepository} from './abstractions/mock-article-repository';
+import {mockAuthService} from './abstractions/mock-auth-service';
 
 export const mockBaseFactory = {
 
     getArticleRepository: () => {
         return mockArticleRepository;
+    },
+
+    getAuthService: () => {
+        return mockAuthService;
     },
 
     reset() {

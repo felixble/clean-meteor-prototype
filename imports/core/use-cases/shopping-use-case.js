@@ -1,14 +1,17 @@
+import {UseCase} from './use-case';
 
-export class ShoppingUseCase {
+export class ShoppingUseCase extends UseCase{
 
     /**
      * @param factory {BaseFactory}
      */
     constructor(factory) {
-        this.factory = factory;
+        super(factory);
     }
 
     async toggleArticleRequired(articleId) {
+        this._checkUserIsAuthenticated();
+
         const articleRepository = this.factory.getArticleRepository();
         let article = await articleRepository.fetchArticleById(articleId);
         article.toggleState();

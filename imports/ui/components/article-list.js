@@ -1,6 +1,11 @@
 import { Template } from 'meteor/templating';
 import './article-list.html';
-import {shoppingGateway} from '../../infrastructure/use-case-gateways';
+import {GatewayFactory} from '../../infrastructure/use-case-gateways';
+
+
+Template.articleList.onCreated(function () {
+    this.shoppingGateway = GatewayFactory.createShoppingGateway();
+});
 
 Template.articleList.helpers({
     getArticles() {
@@ -13,8 +18,8 @@ Template.articleList.helpers({
 });
 
 Template.articleList.events({
-    'change .toggleArticle'(evt) {
+    'change .toggleArticle'(evt, tmpl) {
         evt.preventDefault();
-        shoppingGateway.toggleArticleRequired(this._id);
+        tmpl.shoppingGateway.toggleArticleRequired(this._id);
     }
 });

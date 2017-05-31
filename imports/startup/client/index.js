@@ -1,2 +1,2 @@
 import './design';
-import './routes';
+import './routes/routes';
