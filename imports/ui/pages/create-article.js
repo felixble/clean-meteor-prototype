@@ -9,7 +9,8 @@ Template.createArticle.onCreated(function () {
 Template.createArticle.events({
     'submit #createArticleForm': (evt, tmpl) => {
         evt.preventDefault();
-        const name = tmpl.find('#name').value;
-        tmpl.editListGateway.addArticle(name);
+        const nameField = tmpl.find('#name');
+        tmpl.editListGateway.addArticle(nameField.value);
+        nameField.value = '';
     }
 });
